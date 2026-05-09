@@ -36,7 +36,7 @@ declare -A listed=()
 while IFS= read -r tok; do
     [ -z "$tok" ] && continue
     listed["$tok"]=1
-done < <(awk "$AWK_PROGRAM" "$DOC")
+done < <(awk "$AWK_PROGRAM" -- "$DOC")
 
 mapfile -t exts < <(
     git ls-files | awk -F/ '{print $NF}' | sed -n 's/.*\.//p' | sort -u
