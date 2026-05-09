@@ -16,6 +16,7 @@ if [ ! -f "$DOC" ]; then
     exit 1
 fi
 
+# shellcheck disable=SC2016
 AWK_PROGRAM='
 /^\|/ {
     col = $0
@@ -38,10 +39,12 @@ while IFS= read -r tok; do
     listed["$tok"]=1
 done < <(awk "$AWK_PROGRAM" -- "$DOC")
 
+# shellcheck disable=SC2016
 mapfile -t exts < <(
     git ls-files | awk -F/ '{print $NF}' | sed -n 's/.*\.//p' | sort -u
 )
 
+# shellcheck disable=SC2016
 mapfile -t bare < <(
     git ls-files | awk -F/ '{print $NF}' | grep -v '\.' | sort -u
 )
