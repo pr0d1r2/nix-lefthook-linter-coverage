@@ -1,0 +1,5 @@
+---
+pre-push:
+  commands:
+    linter-coverage:
+      run: timeout ${LEFTHOOK_LINTER_COVERAGE_TIMEOUT:-30} lefthook-linter-coverage
