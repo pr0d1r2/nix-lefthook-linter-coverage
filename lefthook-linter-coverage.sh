@@ -37,7 +37,7 @@ declare -A listed=()
 while IFS= read -r tok; do
     [ -z "$tok" ] && continue
     listed["$tok"]=1
-done < <(awk "$AWK_PROGRAM" -- "$DOC")
+done < <(awk "$AWK_PROGRAM" "$DOC")
 
 # shellcheck disable=SC2016
 mapfile -t exts < <(
