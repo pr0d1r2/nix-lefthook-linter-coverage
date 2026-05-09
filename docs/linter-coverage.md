@@ -1,0 +1,14 @@
+# Linter Coverage
+
+| Extension | Linter | Notes |
+|-----------|--------|-------|
+| `.bats` | ShellCheck (via bats) | Test files |
+| `.editorconfig` | EditorConfig | Config format |
+| `.envrc` | direnv | Shell config |
+| `.gitignore` | - | Git config |
+| `.md` | markdownlint | Documentation |
+| `.nix` | nixfmt | Nix expressions |
+| `.sh` | ShellCheck | Shell scripts |
+| `.toml` | taplo | Config format |
+| `.yml` | yamllint | YAML config |
+| `LICENSE` | - | Plain text, no linter needed |
