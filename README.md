@@ -24,7 +24,7 @@ The tool expects a markdown file with a table where the first column contains ba
 
 ### Option A: Lefthook remote (recommended)
 
-Add to your `lefthook.yml` — no flake input needed, just the wrapper binary in your devShell:
+Add to your `lefthook.yml` - no flake input needed, just the wrapper binary in your devShell:
 
 ```yaml
 remotes:
@@ -78,7 +78,7 @@ export LEFTHOOK_LINTER_COVERAGE_TIMEOUT=60
 
 ## Development
 
-The repo includes an `.envrc` for [direnv](https://direnv.net/) — entering the directory automatically loads the devShell with all dependencies:
+The repo includes an `.envrc` for [direnv](https://direnv.net/) - entering the directory automatically loads the devShell with all dependencies:
 
 ```bash
 cd nix-lefthook-linter-coverage  # direnv loads the flake

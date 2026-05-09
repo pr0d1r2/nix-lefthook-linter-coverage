@@ -4,8 +4,8 @@
 # coverage markdown doc. The doc must have a markdown table where the
 # first column contains backtick-quoted extensions.
 # Config: LEFTHOOK_LINTER_COVERAGE_DOC (default: docs/linter-coverage.md)
-# Usage: lefthook-linter-coverage [ignored — runs on full repo]
-# NOTE: sourced by writeShellApplication — no shebang or set needed.
+# Usage: lefthook-linter-coverage [ignored - runs on full repo]
+# NOTE: sourced by writeShellApplication - no shebang or set needed.
 
 ROOT="$(git rev-parse --show-toplevel 2>/dev/null || pwd)"
 cd "$ROOT"
