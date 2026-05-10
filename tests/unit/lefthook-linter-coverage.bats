@@ -18,6 +18,7 @@ setup() {
     echo "x" > file.txt
     git add file.txt
     git commit -m "init" >/dev/null 2>&1
+    # shellcheck disable=SC2030,SC2031
     export LEFTHOOK_LINTER_COVERAGE_DOC="docs/linter-coverage.md"
     run lefthook-linter-coverage
     assert_failure
@@ -36,6 +37,7 @@ MD
     echo "#!/bin/bash" > script.sh
     git add .
     git commit -m "init" >/dev/null 2>&1
+    # shellcheck disable=SC2030,SC2031
     export LEFTHOOK_LINTER_COVERAGE_DOC="docs/linter-coverage.md"
     run lefthook-linter-coverage
     assert_success
@@ -51,6 +53,7 @@ MD
     echo "data" > file.json
     git add .
     git commit -m "init" >/dev/null 2>&1
+    # shellcheck disable=SC2030,SC2031
     export LEFTHOOK_LINTER_COVERAGE_DOC="docs/linter-coverage.md"
     run lefthook-linter-coverage
     assert_failure
@@ -67,6 +70,7 @@ MD
     echo "all:" > Makefile
     git add .
     git commit -m "init" >/dev/null 2>&1
+    # shellcheck disable=SC2030,SC2031
     export LEFTHOOK_LINTER_COVERAGE_DOC="docs/linter-coverage.md"
     run lefthook-linter-coverage
     assert_success
@@ -83,6 +87,7 @@ MD
     echo "hello" > file.txt
     git add .
     git commit -m "init" >/dev/null 2>&1
+    # shellcheck disable=SC2030,SC2031
     export LEFTHOOK_LINTER_COVERAGE_DOC="custom/linters.md"
     run lefthook-linter-coverage
     assert_success
