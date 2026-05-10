@@ -8,7 +8,7 @@
 # NOTE: sourced by writeShellApplication - no shebang or set needed.
 
 ROOT="$(git rev-parse --show-toplevel 2>/dev/null || pwd)"
-cd "$ROOT"
+cd "$ROOT" || exit
 
 DOC="${LEFTHOOK_LINTER_COVERAGE_DOC:-docs/linter-coverage.md}"
 if [ ! -f "$DOC" ]; then

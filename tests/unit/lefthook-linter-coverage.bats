@@ -28,6 +28,7 @@ setup() {
     cat > docs/linter-coverage.md <<'MD'
 | Extension | Linter |
 |-----------|--------|
+| `.md` | markdownlint |
 | `.txt` | none |
 | `.sh` | shellcheck |
 MD
@@ -60,6 +61,7 @@ MD
     cat > docs/linter-coverage.md <<'MD'
 | Extension | Linter |
 |-----------|--------|
+| `.md` | markdownlint |
 | `Makefile` | make lint |
 MD
     echo "all:" > Makefile
@@ -75,6 +77,7 @@ MD
     cat > custom/linters.md <<'MD'
 | Extension | Linter |
 |-----------|--------|
+| `.md` | markdownlint |
 | `.txt` | none |
 MD
     echo "hello" > file.txt
