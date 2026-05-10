@@ -7,7 +7,7 @@ setup() {
     TMP="$BATS_TEST_TMPDIR/repo-$$"
     mkdir -p "$TMP"
     git init "$TMP" >/dev/null 2>&1
-    cd "$TMP"
+    cd "$TMP" || return
     git config user.email "test@test.com"
     git config user.name "Test"
 
@@ -18,6 +18,7 @@ setup() {
     echo "x" > file.txt
     git add file.txt
     git commit -m "init" >/dev/null 2>&1
+    # shellcheck disable=SC2030,SC2031
     export LEFTHOOK_LINTER_COVERAGE_DOC="docs/linter-coverage.md"
     run lefthook-linter-coverage
     assert_failure
@@ -28,6 +29,7 @@ setup() {
     cat > docs/linter-coverage.md <<'MD'
 | Extension | Linter |
 |-----------|--------|
+| `.md` | markdownlint |
 | `.txt` | none |
 | `.sh` | shellcheck |
 MD
@@ -35,6 +37,7 @@ MD
     echo "#!/bin/bash" > script.sh
     git add .
     git commit -m "init" >/dev/null 2>&1
+    # shellcheck disable=SC2030,SC2031
     export LEFTHOOK_LINTER_COVERAGE_DOC="docs/linter-coverage.md"
     run lefthook-linter-coverage
     assert_success
@@ -50,6 +53,7 @@ MD
     echo "data" > file.json
     git add .
     git commit -m "init" >/dev/null 2>&1
+    # shellcheck disable=SC2030,SC2031
     export LEFTHOOK_LINTER_COVERAGE_DOC="docs/linter-coverage.md"
     run lefthook-linter-coverage
     assert_failure
@@ -60,11 +64,13 @@ MD
     cat > docs/linter-coverage.md <<'MD'
 | Extension | Linter |
 |-----------|--------|
+| `.md` | markdownlint |
 | `Makefile` | make lint |
 MD
     echo "all:" > Makefile
     git add .
     git commit -m "init" >/dev/null 2>&1
+    # shellcheck disable=SC2030,SC2031
     export LEFTHOOK_LINTER_COVERAGE_DOC="docs/linter-coverage.md"
     run lefthook-linter-coverage
     assert_success
@@ -75,11 +81,13 @@ MD
     cat > custom/linters.md <<'MD'
 | Extension | Linter |
 |-----------|--------|
+| `.md` | markdownlint |
 | `.txt` | none |
 MD
     echo "hello" > file.txt
     git add .
     git commit -m "init" >/dev/null 2>&1
+    # shellcheck disable=SC2030,SC2031
     export LEFTHOOK_LINTER_COVERAGE_DOC="custom/linters.md"
     run lefthook-linter-coverage
     assert_success

@@ -24,14 +24,14 @@ teardown() {
 }
 
 @test "sets BATS_LIB_PATH from placeholder" {
-    cd "$TMPDIR/repo"
+    cd "$TMPDIR/repo" || return
     run bash -c 'unset BATS_LIB_PATH; source "$1"; echo "$BATS_LIB_PATH"' -- "$TMPDIR/dev.sh"
     assert_success
     assert_output "/test/lib/share/bats"
 }
 
 @test "runs lefthook install when hooks are missing" {
-    cd "$TMPDIR/repo"
+    cd "$TMPDIR/repo" || return
     rm "$TMPDIR/repo/.git/hooks/pre-commit"
     # shellcheck disable=SC2030
     export PATH="$TMPDIR/bin:$PATH"
@@ -45,7 +45,7 @@ teardown() {
 }
 
 @test "skips lefthook install when hooks exist" {
-    cd "$TMPDIR/repo"
+    cd "$TMPDIR/repo" || return
     # shellcheck disable=SC2031
     export PATH="$TMPDIR/bin:$PATH"
     # shellcheck disable=SC2031
