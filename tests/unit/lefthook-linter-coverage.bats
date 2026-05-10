@@ -7,7 +7,7 @@ setup() {
     TMP="$BATS_TEST_TMPDIR/repo-$$"
     mkdir -p "$TMP"
     git init "$TMP" >/dev/null 2>&1
-    cd "$TMP"
+    cd "$TMP" || return
     git config user.email "test@test.com"
     git config user.name "Test"
 
