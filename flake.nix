@@ -37,17 +37,25 @@
     in
     {
       packages = forAllSystems (pkgs: {
-        default = pkgs.writeShellApplication {
-          name = "lefthook-linter-coverage";
-          runtimeInputs = [
-            pkgs.gawk
-            pkgs.git
-            pkgs.gnugrep
-            pkgs.gnused
-            pkgs.coreutils
-          ];
-          text = builtins.readFile ./lefthook-linter-coverage.sh;
-        };
+        default =
+          let
+            parseCoverageDoc = pkgs.writeText "parse-coverage-doc.sh" (
+              builtins.readFile ./parse-coverage-doc.sh
+            );
+          in
+          pkgs.writeShellApplication {
+            name = "lefthook-linter-coverage";
+            runtimeInputs = [
+              pkgs.gawk
+              pkgs.git
+              pkgs.gnugrep
+              pkgs.gnused
+              pkgs.coreutils
+            ];
+            text = builtins.replaceStrings [ "@PARSE_COVERAGE_DOC@" ] [ "${parseCoverageDoc}" ] (
+              builtins.readFile ./lefthook-linter-coverage.sh
+            );
+          };
       });
 
       devShells = forAllSystems (
