@@ -16,28 +16,11 @@ if [ ! -f "$DOC" ]; then
     exit 1
 fi
 
-# shellcheck disable=SC2016
-AWK_PROGRAM='
-/^\|/ {
-    col = $0
-    sub(/^\|/, "", col)
-    end = index(col, "|")
-    if (end == 0) next
-    col = substr(col, 1, end - 1)
-    while (match(col, /`[^`]+`/)) {
-        tok = substr(col, RSTART + 1, RLENGTH - 2)
-        sub(/^\./, "", tok)
-        print tok
-        col = substr(col, RSTART + RLENGTH)
-    }
-}
-'
-
 declare -A listed=()
 while IFS= read -r tok; do
     [ -z "$tok" ] && continue
     listed["$tok"]=1
-done < <(awk "$AWK_PROGRAM" "$DOC")
+done < <(bash @PARSE_COVERAGE_DOC@ "$DOC")
 
 # shellcheck disable=SC2016
 mapfile -t exts < <(
